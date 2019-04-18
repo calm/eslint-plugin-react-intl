@@ -65,6 +65,18 @@ ruleTester.run("missing-attribute", rule, {
           });
         `,
         options: [{ formatDefineMessages: true }]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+          import x from 'y';
+
+          const messages = defineMessages({
+            someId: (
+              <FormattedMessage id="hello" defaultMessage="world" />
+            )
+          });
+        `
       }
     ],
 
