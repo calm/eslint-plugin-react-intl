@@ -1,8 +1,10 @@
-# eslint-plugin-react-intl-format
+# @calm/eslint-plugin-react-intl
 
 This is a plugin to ensure that Intl translations are being made correctly with [react-intl](https://www.npmjs.com/package/react-intl).
 Since they should be stored in an object for translation, this disables plain
 text between html tags.
+
+The plugin is actively supported by the Calm engineering team, and contributions/concerns are welcome at https://github.com/calm/eslint-plugin-react-intl.
 
 There are three options to enable, and we recommend enabling all of them to ensure
 proper translations in all languages.
