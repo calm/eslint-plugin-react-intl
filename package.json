@@ -1,0 +1,30 @@
+{
+  "name": "@calm/eslint-plugin-react-intl",
+  "version": "1.1.7",
+  "description": "Linter for React-Intl integration",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Blaine Muri <blaine@calm.com>",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "~3.9.1",
+    "mocha": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calm/eslint-plugin-react-intl"
+  }
+}
