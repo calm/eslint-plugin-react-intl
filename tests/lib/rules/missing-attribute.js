@@ -18,6 +18,7 @@ RuleTester.setDefaultConfig({
     ecmaFeatures: {
       jsx: true,
     },
+    sourceType: 'module',
   }
 });
 
@@ -50,6 +51,20 @@ ruleTester.run("missing-attribute", rule, {
       {
         code: '<FormattedMessage id="blah" defaultMessage="has description enforced" description="description" />',
         options: [{ requireDescription: true }]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+          import x from 'y';
+
+          const messages = defineMessages({
+            someId: {
+              id: 'hello',
+              defaultMessage: 'world',
+            }
+          });
+        `,
+        options: [{ formatDefineMessages: true }]
       }
     ],
 
@@ -132,6 +147,50 @@ ruleTester.run("missing-attribute", rule, {
           message: 'intl attributes must be strings',
           type: 'JSXExpressionContainer'
         }]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+          import x from 'y';
+
+          const messages = defineMessages({
+            someId: {
+              id: 'hello',
+              defaultMessage: 'world',
+            }
+          });
+        `,
+        options: [{ formatDefineMessages: true, requireDescription: true }],
+        errors: [{
+          message: 'missing attribute: description',
+          type: 'Property'
+        }]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+          import x from 'y';
+
+          const messages = defineMessages({
+            someId: {
+              id: 'hello',
+            },
+            someOtherId: {
+              defaultMessage: 'fooBar',
+            },
+          });
+        `,
+        options: [{ formatDefineMessages: true }],
+        errors: [
+          {
+            message: 'missing attribute: defaultMessage',
+            type: 'Property'
+          },
+          {
+            message: 'missing attribute: id',
+            type: 'Property'
+          }
+        ]
       }
     ]
 });

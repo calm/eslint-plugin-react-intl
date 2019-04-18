@@ -30,6 +30,7 @@ use case, you may want to disable this.
 * `defaultMessage` and `id` attributes cannot be empty
 * Spread operator by default is not allowed
   * Spread operator can't be evaluated by eslint's AST, so translations can't be guaranteed
+* `requireDescription` can optionally be set to require that all translations contain the description attribute
 
 ## Installation
 
@@ -39,36 +40,36 @@ You'll first need to install [ESLint](http://eslint.org):
 $ npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-react-intl-format`:
+Next, install `@calm/eslint-plugin-react-intl`:
 
 ```
-$ npm install eslint-plugin-react-intl-format --save-dev
+$ npm install @calm/eslint-plugin-react-intl --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-react-intl-format` globally.
+**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `@calm/eslint-plugin-react-intl` globally.
 
 ## Usage
 
-Add `react-intl-format` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `@calm/react-intl` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
     "plugins": [
-        "react-intl-format"
+        "@calm/react-intl"
     ]
 }
 ```
 
 
 Then configure the rules you want to use under the rules section.
-Currently there's just one rule: 'missing-formatted-message'.
+The rules (with their default settings) are listed below.
 
 ```json
 {
     "rules": {
-        "react-intl-format/missing-formatted-message": [2, { "noTrailingWhitespace": true, "ignoreLinks": true }],
-        "react-intl-format/missing-attribute": [2, { "noTrailingWhitespace": true, "noSpreadOperator": true }],
-        "react-intl-format/missing-values": 2
+        "@calm/react-intl/missing-formatted-message": [2, { "noTrailingWhitespace": true, "ignoreLinks": true }],
+        "@calm/react-intl/missing-attribute": [2, { "noTrailingWhitespace": true, "noSpreadOperator": true, "requireDescription": false }],
+        "@calm/react-intl/missing-values": 2
     }
 }
 ```
