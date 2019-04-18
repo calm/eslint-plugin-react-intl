@@ -31,6 +31,8 @@ use case, you may want to disable this.
 * Spread operator by default is not allowed
   * Spread operator can't be evaluated by eslint's AST, so translations can't be guaranteed
 * `requireDescription` can optionally be set to require that all translations contain the description attribute
+* Use the `formatDefineMessages: true` option in order to also check the defineMessages declaration from react-intl
+  * *BE CAREFUL* - This assumes that defineMessages will always mean the react-intl method, so do not declare other defineMessages functions unless they maintain the same formatting as react-intl.
 
 ## Installation
 
@@ -68,7 +70,14 @@ The rules (with their default settings) are listed below.
 {
     "rules": {
         "@calm/react-intl/missing-formatted-message": [2, { "noTrailingWhitespace": true, "ignoreLinks": true }],
-        "@calm/react-intl/missing-attribute": [2, { "noTrailingWhitespace": true, "noSpreadOperator": true, "requireDescription": false }],
+        "@calm/react-intl/missing-attribute": [2,
+            {
+                "noTrailingWhitespace": true,
+                "noSpreadOperator": true,
+                "requireDescription": false,
+                "formatDefineMessages": false
+            }
+        ],
         "@calm/react-intl/missing-values": 2
     }
 }
