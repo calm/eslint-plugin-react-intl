@@ -122,7 +122,15 @@ ruleTester.run("missing-attribute", rule, {
         code: '<FormattedMessage id="blah" defaultMessage="blah" />',
         options: [{ requireDescription: true }],
         errors: [{
-          message: 'missing attribute: description'
+          message: 'missing attribute: description',
+          type: 'JSXOpeningElement'
+        }]
+      },
+      {
+        code: '<FormattedMessage id="blah" defaultMessage={{ a: "hello" }} />',
+        errors: [{
+          message: 'intl attributes must be strings',
+          type: 'JSXExpressionContainer'
         }]
       }
     ]
