@@ -52,6 +52,9 @@ ruleTester.run("missing-formatted-message", rule, {
       },
       {
         code: '<span>1234</span>'
+      },
+      {
+        code: '<div>-<FormattedMessage id="blah" defaultMessage="hello"/></div>'
       }
     ],
 

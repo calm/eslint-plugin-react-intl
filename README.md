@@ -21,6 +21,7 @@ use case, you may want to disable this.
 * `<a>` tags by default are not checked (this can be disabled)
 * Numbers are ignored (they're the same in every language)
 * Trailing whitespace is not allowed (this can be disabled)
+* Non-alphanumeric values are ignored (such as `-`)
 
 #### Missing Values validation
 * In defaultMessage attributes within <FormattedMessage/> components, `{variable}` declarations must be declared in the `values` attribute
