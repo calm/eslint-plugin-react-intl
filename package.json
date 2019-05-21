@@ -1,11 +1,16 @@
 {
   "name": "@calm/eslint-plugin-react-intl",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Linter for React-Intl integration",
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "react-intl",
+    "eslint-plugin-react-intl",
+    "translation",
+    "translate",
+    "i18n"
   ],
   "author": "Blaine Muri <blaine@calm.com>",
   "main": "lib/index.js",

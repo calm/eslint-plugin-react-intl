@@ -41,11 +41,11 @@ ruleTester.run("missing-formatted-message", rule, {
       },
       {
         code: `<p>
-              <FormattedMessage
-                id="profile.manageSubscription.expired.message"
-                defaultMessage="You have a free Calm account. You can purchase a Calm Premium subscription to access our full library of content and features."
-              />
-            </p>`
+<FormattedMessage
+  id="profile.manageSubscription.expired.message"
+  defaultMessage="You have a free Calm account. You can purchase a Calm Premium subscription to access our full library of content and features."
+/>
+</p>`
       },
       {
         code: '<div>1</div>'
@@ -79,6 +79,15 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'text may need translation: "hello"',
+              type: 'Literal',
+            }
+          ]
+        },
+        {
+          code: '<div><span><FormattedMessage id="test" defaultMessage="hello" /></span>Extra Text</div>',
+          errors: [
+            {
+              message: 'text may need translation: "Extra Text"',
               type: 'Literal',
             }
           ]
