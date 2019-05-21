@@ -84,10 +84,15 @@ ruleTester.run("missing-formatted-message", rule, {
           ]
         },
         {
-          code: '<div><span><FormattedMessage id="test" defaultMessage="hello" /></span>Extra Text</div>',
+          code: `
+            <div>
+              <span><FormattedMessage id="test" defaultMessage="hello" /></span>
+              Extra Text
+            </div>
+          `,
           errors: [
             {
-              message: 'text may need translation: "Extra Text"',
+              message: 'text may need translation: "\n              Extra Text\n            "',
               type: 'Literal',
             }
           ]
