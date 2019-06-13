@@ -99,6 +99,24 @@ ruleTester.run("missing-formatted-message", rule, {
               type: 'Literal',
             }
           ]
+        },
+        {
+          code: `
+          <div>
+            hello
+            <br />
+            <FormattedMessage
+              id="subscribe.loadingText.calmIsLoading"
+              defaultMessage="Calm is loading."
+            />
+          </div>
+          `,
+          errors: [
+            {
+              message: 'text may need translation: "\n            hello\n            "',
+              type: 'Literal',
+            }
+          ]
         }
     ]
 });
