@@ -67,6 +67,13 @@ ruleTester.run("missing-formatted-message", rule, {
       {
         code: '<track src="subtitles_en.vtt" label="hello world" kind="subtitles" srclang="en" />',
       },
+      {
+        code: '<img alt="hello world" />',
+      },
+      {
+        code: '<img src="someSource" alt={formatMessage(messages.helloWorld)} />',
+        options: [{ enforceImageAlts: true }],
+      }
     ],
 
     invalid: [
@@ -139,5 +146,15 @@ ruleTester.run("missing-formatted-message", rule, {
             }
           ]
         },
+        {
+          code: '<img src="someSource" alt="take a deep breath" />',
+          options: [{ enforceImageAlts: true }],
+          errors: [
+            {
+              message: 'attribute may need translation: "take a deep breath"',
+              type: 'JSXAttribute',
+            }
+          ]
+        }
     ]
 });
