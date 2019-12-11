@@ -80,6 +80,10 @@ ruleTester.run("missing-formatted-message", rule, {
       },
       {
         code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`,
+      },
+      {
+        code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': formatMessage(messages.checkboxLabel) }} />`,
+        options: [{ enforceInputProps: true, enforceImageAlts: true,  }],
       }
     ],
 
