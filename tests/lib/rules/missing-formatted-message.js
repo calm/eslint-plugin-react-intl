@@ -55,7 +55,18 @@ ruleTester.run("missing-formatted-message", rule, {
       },
       {
         code: '<div>-<FormattedMessage id="blah" defaultMessage="hello"/></div>'
-      }
+      },
+      {
+        code: '<track src="subtitles_en.vtt" label={formatMessage(messages.hello)} kind="subtitles" srclang="en" />',
+        options: [{ enforceLabels: true }],
+      },
+      {
+        code: '<track src="subtitles_en.vtt" kind="subtitles" srclang="en" label={someVar} />',
+        options: [{ enforceLabels: true }],
+      },
+      {
+        code: '<track src="subtitles_en.vtt" label="hello world" kind="subtitles" srclang="en" />',
+      },
     ],
 
     invalid: [
@@ -117,6 +128,16 @@ ruleTester.run("missing-formatted-message", rule, {
               type: 'Literal',
             }
           ]
-        }
+        },
+        {
+          code: '<track src="subtitles_en.vtt" label="hello world" kind="subtitles" srclang="en" />',
+          options: [{ enforceLabels: true }],
+          errors: [
+            {
+              message: 'attribute may need translation: "hello world"',
+              type: 'JSXAttribute',
+            }
+          ]
+        },
     ]
 });
