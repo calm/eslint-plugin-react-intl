@@ -73,6 +73,10 @@ ruleTester.run("missing-formatted-message", rule, {
       {
         code: '<img src="someSource" alt={formatMessage(messages.helloWorld)} />',
         options: [{ enforceImageAlts: true }],
+      },
+      {
+        code: '<img src="someSource" alt="" />',
+        options: [{ enforceImageAlts: true }],
       }
     ],
 

@@ -16,12 +16,14 @@ use case, you may want to disable this.
 
 ## Use Cases
 
-#### FormattedMessage validation
+#### Formatted Message validation
 * Checks to make sure plain text doesn't exist within html tags (should be translated)
 * `<a>` tags by default are not checked (this can be disabled)
 * Numbers are ignored (they're the same in every language)
 * Trailing whitespace is not allowed (this can be disabled)
 * Non-alphanumeric values are ignored (such as `-`)
+* Can enable enforcing label, aria-label attributes being translated (`<track label="subtitles" />`)
+* Can enable enforcing alt attributes being translated (`<img alt="description" />`)
 
 #### Missing Values validation
 * In defaultMessage attributes within <FormattedMessage/> components, `{variable}` declarations must be declared in the `values` attribute
@@ -67,12 +69,21 @@ Add `@calm/react-intl` to the plugins section of your `.eslintrc` configuration 
 
 
 Then configure the rules you want to use under the rules section.
+It's recommended that you explicitly set each option.
+<br />
 The rules (with their default settings) are listed below.
 
 ```json
 {
     "rules": {
-        "@calm/react-intl/missing-formatted-message": [2, { "noTrailingWhitespace": true, "ignoreLinks": true }],
+        "@calm/react-intl/missing-formatted-message": [2,
+          {
+            "noTrailingWhitespace": true,
+            "ignoreLinks": true,
+            "enforceLabels": false,
+            "enforceImageAlts": false
+          }
+        ],
         "@calm/react-intl/missing-attribute": [2,
             {
                 "noTrailingWhitespace": true,
