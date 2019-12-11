@@ -165,11 +165,11 @@ ruleTester.run("missing-formatted-message", rule, {
         },
         {
           code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`,
-          options: [{ enforceInputProps: true }],
+          options: [{ enforceInputProps: true, enforceImageAlts: true,  }],
           errors: [
             {
               message: 'attribute may need translation: "Checkbox A"',
-              type: 'JSXAttribute',
+              type: 'Property',
             }
           ]
         }
