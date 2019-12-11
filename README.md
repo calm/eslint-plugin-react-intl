@@ -24,6 +24,9 @@ use case, you may want to disable this.
 * Non-alphanumeric values are ignored (such as `-`)
 * Can enable enforcing label, aria-label attributes being translated (`<track label="subtitles" />`)
 * Can enable enforcing alt attributes being translated (`<img alt="description" />`)
+* Can enable enforcing inputProps being translated (`<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`)
+  * This is specific to some React libraries, such as MaterialUI
+  * Example can be seen here: https://material-ui.com/components/checkboxes/#accessibility
 
 #### Missing Values validation
 * In defaultMessage attributes within <FormattedMessage/> components, `{variable}` declarations must be declared in the `values` attribute
@@ -81,7 +84,8 @@ The rules (with their default settings) are listed below.
             "noTrailingWhitespace": true,
             "ignoreLinks": true,
             "enforceLabels": false,
-            "enforceImageAlts": false
+            "enforceImageAlts": false,
+            "enforceInputProps": false
           }
         ],
         "@calm/react-intl/missing-attribute": [2,
