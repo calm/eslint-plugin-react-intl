@@ -77,6 +77,9 @@ ruleTester.run("missing-formatted-message", rule, {
       {
         code: '<img src="someSource" alt="" />',
         options: [{ enforceImageAlts: true }],
+      },
+      {
+        code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`,
       }
     ],
 
@@ -156,6 +159,16 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'attribute may need translation: "take a deep breath"',
+              type: 'JSXAttribute',
+            }
+          ]
+        },
+        {
+          code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`,
+          options: [{ enforceInputProps: true }],
+          errors: [
+            {
+              message: 'attribute may need translation: "Checkbox A"',
               type: 'JSXAttribute',
             }
           ]
