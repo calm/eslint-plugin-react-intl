@@ -96,6 +96,10 @@ ruleTester.run("missing-attribute", rule, {
         options: [{ requireIdAsString: false, formatDefineMessages: true }],
       },
       {
+        code: `<FormattedMessage id={someVar} />`,
+        options: [{ requireDefaultMessage: false, requireIdAsString: false }],
+      },
+      {
         code: `<FormattedMessage id="blah" />`,
         options: [{ requireDefaultMessage: false }],
       },
@@ -110,7 +114,7 @@ ruleTester.run("missing-attribute", rule, {
           });
         `,
         options: [{ requireDefaultMessage: false, formatDefineMessages: true }],
-      }
+      },
     ],
 
     invalid: [
@@ -253,6 +257,16 @@ ruleTester.run("missing-attribute", rule, {
           {
             message: 'intl attributes must be strings',
             type: 'Property',
+          }
+        ]
+      },
+      {
+        code: `<FormattedMessage id={someVar} />`,
+        options: [{ requireDefaultMessage: false }],
+        errors: [
+          {
+            message: 'intl attributes must be strings',
+            type: 'JSXExpressionContainer',
           }
         ]
       },
