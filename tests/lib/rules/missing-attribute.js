@@ -77,6 +77,39 @@ ruleTester.run("missing-attribute", rule, {
             )
           });
         `
+      },
+      {
+        code: '<FormattedMessage id={`${someVar} : button`} defaultMessage="hello world" />',
+        options: [{ requireIdAsString: false }],
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+
+          const messages = defineMessages({
+            someId: {
+              id: \`\${someVar} : button\`,
+              defaultMessage: 'world',
+            }
+          });
+        `,
+        options: [{ requireIdAsString: false, formatDefineMessages: true }],
+      },
+      {
+        code: `<FormattedMessage id="blah" />`,
+        options: [{ requireDefaultMessage: false }],
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+
+          const messages = defineMessages({
+            someId: {
+              id: 'hello',
+            }
+          });
+        `,
+        options: [{ requireDefaultMessage: false, formatDefineMessages: true }],
       }
     ],
 
@@ -201,6 +234,52 @@ ruleTester.run("missing-attribute", rule, {
           {
             message: 'missing attribute: id',
             type: 'Property'
+          }
+        ]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+
+          const messages = defineMessages({
+            someId: {
+              id: \`\${someVar} : button\`,
+              defaultMessage: 'world',
+            }
+          });
+        `,
+        options: [{ formatDefineMessages: true }],
+        errors: [
+          {
+            message: 'intl attributes must be strings',
+            type: 'Property',
+          }
+        ]
+      },
+      {
+        code: `<FormattedMessage id="blah" />`,
+        errors: [
+          {
+            message: 'missing attribute: defaultMessage',
+            type: 'JSXOpeningElement',
+          }
+        ]
+      },
+      {
+        code: `
+          import { defineMessages, FormattedMessage } from 'react-intl';
+
+          const messages = defineMessages({
+            someId: {
+              id: 'hello',
+            }
+          });
+        `,
+        options: [{ formatDefineMessages: true }],
+        errors: [
+          {
+            message: 'missing attribute: defaultMessage',
+            type: 'Property',
           }
         ]
       }
