@@ -35,12 +35,15 @@ use case, you may want to disable this.
 
 #### Missing Attribute validation
 * <FormattedMessage/> components must have both `defaultMessage` and `id` attributes set
+  * Calm chooses to always require these, but you can optionally disable defaultMessage with option `requireDefaultMessage : false`
 * `defaultMessage` and `id` attributes cannot be empty
 * Spread operator by default is not allowed
   * Spread operator can't be evaluated by eslint's AST, so translations can't be guaranteed
 * `requireDescription` can optionally be set to require that all translations contain the description attribute
 * Use the `formatDefineMessages: true` option in order to also check the defineMessages declaration from react-intl
-  * *BE CAREFUL* - This assumes that defineMessages will always mean the react-intl method, so do not declare other defineMessages functions unless they maintain the same formatting as react-intl.
+  * *BE CAREFUL* - This assumes that defineMessages will always mean the react-intl method, so do not declare other defineMessages functions unless they maintain the same formatting as react-intl
+* Optional `requireIdAsString: false` will allow for variables in the id field
+  * *BE CAREFUL* - variables in id fields can result in duplicate strings being translated, as well as the possibility of a changed variable leading to an id without a translation associated with it
 
 ## Installation
 
@@ -93,7 +96,9 @@ The rules (with their default settings) are listed below.
                 "noTrailingWhitespace": true,
                 "noSpreadOperator": true,
                 "requireDescription": false,
-                "formatDefineMessages": false
+                "formatDefineMessages": false,
+                "requireIdAsString": true,
+                "requireDefaultMessage": true,
             }
         ],
         "@calm/react-intl/missing-values": 2
