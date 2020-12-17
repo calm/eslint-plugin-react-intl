@@ -22,6 +22,7 @@ use case, you may want to disable this.
 * Numbers are ignored (they're the same in every language)
 * Trailing whitespace is not allowed (this can be disabled)
 * Non-alphanumeric values are ignored (such as `-`)
+* Can change what parser considers as alphabet characters. Default is `a-zA-Z`
 * Can enable enforcing label, aria-label attributes being translated (`<track label="subtitles" />`)
 * Can enable enforcing alt attributes being translated (`<img alt="description" />`)
 * Can enable enforcing inputProps being translated (`<Checkbox value="checkedA" inputProps={{ 'aria-label': 'Checkbox A' }} />`)
@@ -88,7 +89,8 @@ The rules (with their default settings) are listed below.
             "ignoreLinks": true,
             "enforceLabels": false,
             "enforceImageAlts": false,
-            "enforceInputProps": false
+            "enforceInputProps": false,
+            "textChars": "a-zA-Z"
           }
         ],
         "@calm/react-intl/missing-attribute": [2,
@@ -98,7 +100,7 @@ The rules (with their default settings) are listed below.
                 "requireDescription": false,
                 "formatDefineMessages": false,
                 "requireIdAsString": true,
-                "requireDefaultMessage": true,
+                "requireDefaultMessage": true
             }
         ],
         "@calm/react-intl/missing-values": 2

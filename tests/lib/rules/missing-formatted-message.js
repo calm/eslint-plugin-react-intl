@@ -84,6 +84,9 @@ ruleTester.run("missing-formatted-message", rule, {
       {
         code: `<Checkbox value="checkedA" inputProps={{ 'aria-label': formatMessage(messages.checkboxLabel) }} />`,
         options: [{ enforceInputProps: true, enforceImageAlts: true,  }],
+      },
+      {
+        code: "<span>Русский текст</span>",
       }
     ],
 
@@ -176,6 +179,14 @@ ruleTester.run("missing-formatted-message", rule, {
               type: 'Property',
             }
           ]
-        }
+        },
+        {
+          code: "<span>Русский текст</span>",
+          options: [{ textChars: "a-zA-Zа-яА-Я"}],
+          errors: [{
+            message: 'text may need translation: "Русский текст"',
+            type: 'Literal',
+          }]
+        },
     ]
 });
