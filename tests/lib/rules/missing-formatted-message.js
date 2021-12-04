@@ -92,7 +92,7 @@ ruleTester.run("missing-formatted-message", rule, {
             code: "<span>Some text here</span>",
             errors: [{
                 message: 'text may need translation: "Some text here"',
-                type: 'Literal',
+                type: 'JSXText',
             }]
         },
         {
@@ -101,7 +101,7 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'no trailing whitespace',
-              type: 'Literal'
+              type: 'JSXText'
             },
           ]
         },
@@ -111,7 +111,7 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'text may need translation: "hello"',
-              type: 'Literal',
+              type: 'JSXText',
             }
           ]
         },
@@ -125,7 +125,7 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'text may need translation: "\n              Extra Text\n            "',
-              type: 'Literal',
+              type: 'JSXText',
             }
           ]
         },
@@ -143,7 +143,7 @@ ruleTester.run("missing-formatted-message", rule, {
           errors: [
             {
               message: 'text may need translation: "\n            hello\n            "',
-              type: 'Literal',
+              type: 'JSXText',
             }
           ]
         },
@@ -174,6 +174,15 @@ ruleTester.run("missing-formatted-message", rule, {
             {
               message: 'attribute may need translation: "Checkbox A"',
               type: 'Property',
+            }
+          ]
+        },
+        {
+          code: '<>hello fragment</>',
+          errors: [
+            {
+              message: 'text may need translation: "hello fragment"',
+              type: 'JSXText',
             }
           ]
         }
